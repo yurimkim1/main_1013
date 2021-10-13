@@ -1,0 +1,128 @@
+@font-face {
+  font-family: abster;
+  src: url(/fonts/abster-webfont.woff) format('woff');
+}
+*
+{
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body
+{
+  width: 100%;
+  height: 100%;
+  background: #11e8bb; /* Old browsers */
+  background: -moz-linear-gradient(top,  #11e8bb 0%, #8200c9 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(top,  #11e8bb 0%,#8200c9 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom,  #11e8bb 0%,#8200c9 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#11e8bb', endColorstr='#8200c9',GradientType=0 ); /* IE6-9 */
+}
+body {
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+
+.webgl
+{
+  /* width: 50%; */
+  mix-blend-mode: exclusion;
+  /* background: orange; */
+}
+
+.container {
+
+  float: left;
+  width: 50%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+}
+
+.container{
+  position: absolute;
+  top: 0px;
+  width: 100%;
+  height: 0;
+  /* background: linear-gradient(rgba(0,0,0,0.8),rgba(0,0,0,0.8)), url(images/room.jpg); */
+  /* linear-gradient 불투명도*/
+}
+
+.container .header{
+  
+  width: 80%;
+  height: 80px;
+  margin: 0 auto;
+  /* 수평기준으로 중앙 */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* 중앙정렬 */
+}
+
+.container .header h1 a {
+  text-decoration: none;
+  color: white;
+  font-family: abster;
+}
+
+.container .nav ul li{
+  display: inline-block; /* 가로로 정렬 */
+  margin: 0 10px;
+}
+
+.container .nav ul li a{
+  font-size:x-large;
+  text-decoration: none;
+  color: white;
+}
+
+.container .nav ul li a:hover{
+  color: #000000;
+}
+
+#next a{
+  text-decoration: none;
+  display: inline-block;
+  position: fixed;
+  top: 80%;
+  left: 44%;
+  z-index: 9;    
+  border-radius: 4px;
+  background-color: white;
+  border: none;
+  color: black;
+  text-align: center;
+  font-size: 28px;
+  padding: 20px;
+  width: 150px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+}
+
+#next a span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+#next a span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 1;
+  top: 20;
+  right: -20px;
+  transition: 0.5s;
+}
+
+#next a:hover {
+  padding-right: 40px;
+}
+
+#next a:hover span:after {
+  opacity: 1;
+  right: 0;
+}
