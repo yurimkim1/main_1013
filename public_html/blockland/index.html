@@ -130,6 +130,11 @@
 	<script type="module" src="libs/three.js-master/src/textures/VideoTexture.js"></script>
 	<script type="module" src="libs/three.js-master/examples/js/renderers/CSS3DRenderer.js"></script>
 
+	<!-- webrtc 모듈 -->
+	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+	<script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@remotemonster/sdk/remon.min.js"></script>
+
 	<script src="libs/Detector.js"></script>
 	<script src="libs/toon3d.js"></script>
 
@@ -140,22 +145,9 @@
 	<script src="ChatHide.js"></script>
 	<script src="Users.js"></script>
 
-	<!-- <div>
-			<audio id="audio">
-				<source src="./assets/sound/bensound-ukulele.mp3" type="audio/mp3">
-			</audio>
-			<button>Play</button>
-		</div> -->
-	<!-- <div id="overlay">
-		<button id="startButton">Play</button>
-	</div> -->
-	<!-- <video width="800px" height="600px" src="./assets/video/Beach - 79773.mp4" controls autoplay muted loop playsinline style="display: none;"></video> -->
-	<!-- 공유가능한 동영상 로드 -->
-		<!-- <div id="iframe">
-			<iframe src="https://www.youtube.com/embed/AbxbOd_mtn8?rel=0&amp;autoplay=1&mute=1&amp;loop=1;" title="YouTube video player"?rel=0 style="display: none;" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-		</div> -->
+
 	<!-- (muted / autoplay) = 크롬에서 2개가 같이 필수로 넣어야함 / loop 필수 -->
-	<video id="video" loop="" muted crossOrigin="anonymous" playsinline="" autoplay style="display: none;">
+	<video id="video" class="remote-video" loop="" muted crossOrigin="anonymous" playsinline="" autoplay style="display: none;">
 		<source src="./assets/video/BTS (방탄소년단) 'Butter' Official MV (savefrom.kr).mp4" type='video/mp4; codecs="avc1.4D401E, mp4a.40.2"'></video>
 		<video id="video1" loop="" muted crossOrigin="anonymous" playsinline="" autoplay style="display: none;">
 			<source src="./assets/video/leekyungun.mp4" type='video/mp4; codecs="avc1.4D401E, mp4a.40.2"'></video>
@@ -220,28 +212,6 @@
 	  <div id="box" class="box">
 	</div>
 	</div>
-	<!-- 사이드바 안에 채팅창 -->
-	<!-- <div class="chat-container">
-		<header class="chat-header">
-			<h1><i class="fas fa-smile"></i> BIT Occasion </h1>
-			<a href="index.html" class="btn">Leave Room</a>
-		</header>
-		<main class="chat-main">
-			<div class="chat-sidebar">
-				<h3><i class="fas fa-comments"></i> Room Name </h3>
-				<h2 id="room-name"></h2>
-				<h3><i class="fas fa-users"></i> Users </h3>
-				<ul id="users"></ul>
-			</div>
-			<div class="chat-messages"></div>
-		</main>
-		<div class="chat-form-container">
-			<form id="chat-form">
-				<input id="msg" type="text" placeholder="Enter Message" required autocomplete="off" />
-				<button class="btn"><i class="fas fa-paper-plane"></i> Send</button>
-			</form>
-		</div>
-	</div> -->
 	<!-- 사이드바 이벤트 -->
 	<div class="toggle" onclick="toggleMenu()"></div>
 	<script type="text/javascript">
@@ -260,6 +230,33 @@
 			<button class="save-nick"> 저장 </button>
 		</div>
 	</div>
+
+	<!-- webRTC local -->
+	<div id="wingleft"></div>
+    <div id="mymain_local">
+        <h2>방송</h2>
+        <video id="localVideo" class="remote-video" autoplay muted style="visibility: hidden;"></video>
+        <br>
+        <input id="channelNameInput" class="text-center" type="text" placeholder="channel name" autofocus>
+        <button id="localmystart" class="btn-main1">Room Create</button>
+        <button id="localmystop" class="btn-main" disabled>Stop</button>
+        <button id="screenshare" class="btn-main">screenshare</button>
+    </div>
+    <div id="wingright"></div>
+
+	<!-- webRTC remote-->
+	<div id="wingleft"></div>
+    <div id="mymain_remote">
+        <h2>시청</h2>
+        <video id="remoteVideo" autoplay muted></video>
+        <br>
+        <button id="remotemystart" class="btn-main">Join</button>
+        <button id="remotemystop" class="btn btn-main" disabled>Stop</button>
+    </div>
+    <div id="wingright"></div>
+
+	<script src="rtc_local.js"></script>
+	<script src="rtc_remote.js"></script>
 	<script>
 		//let nickList = [];
 		$('.save-nick').click(function () {
@@ -276,9 +273,6 @@
 			users = new Users(UserNick);
 
 			game = new Game(UserNick)
-
-			
-			
 			// document.addEventListener("DOMContentLoaded", function(){ game = new Game(UserModel); });
 		});
 	</script>

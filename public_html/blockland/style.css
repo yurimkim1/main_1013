@@ -441,3 +441,26 @@ a {
     position: absolute;
     right: 5px;
 }
+
+#mymain_local{
+    position: absolute;
+    left: 10px;
+    top: 50px;
+}
+
+#wingleft {}
+
+#wingright {}
+
+#localVideo {
+    position: absolute;
+}
+#mymain_remote{
+    z-index: 10;
+    position: absolute;
+    right: 10px;
+}
+#remoteVideo {
+    right: 80px;
+    position: absolute;
+}

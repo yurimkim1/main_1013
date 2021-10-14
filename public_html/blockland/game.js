@@ -311,12 +311,12 @@ class Game  {
 			game.scene.add(game.textMesh7)
 		});
 		// // 동영상 화면 텍스쳐
-		const video = document.getElementById('video');
-		video.play(); // 필수 자동재생
+		const video = document.getElementById('localVideo');
+		//video.play(); // 필수 자동재생
 		const videoTexture = new THREE.VideoTexture(video);
 		const videoMaterial = new THREE.MeshBasicMaterial({
 			map: videoTexture,
-			side: THREE.BackSide, // DoubleSide 양쪽 면이 다 보이게
+			side: THREE.DoubleSide, // DoubleSide 양쪽 면이 다 보이게
 			overdraw: true
 		});
 		videoTexture.minFilter = THREE.LinearFilter; // 원래는 1920x960 이런식으로 영상의 사이즈에 맞게 설정해야하는데 
@@ -325,6 +325,7 @@ class Game  {
 		const videoGeometry = new THREE.PlaneGeometry(10500, 4700, 2000);  // 동영상 재생 화면 생성 및 크기조정
 		const videoScreen = new THREE.Mesh(videoGeometry, videoMaterial);  // 동영상 화면 및 videoMaterial
 		videoScreen.position.set(0, 2000, 3920); //이게 맞는 위치
+		videoScreen.rotation.y = Math.PI
 		this.scene.add(videoScreen);
 
 		
