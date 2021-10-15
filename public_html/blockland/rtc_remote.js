@@ -39,8 +39,7 @@ $('#remotemystop').click(function () {
 remotesocket.on('channelnametowatch', function (remoteChannelId) {
     console.log("dsadsad", remoteChannelId);
 
-
-    $('#remotemystart').click(function () {
+   $('#remotemystart').click(function () {
 
         remoteremon.joinCast(remoteChannelId);
     })

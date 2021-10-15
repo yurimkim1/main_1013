@@ -63,7 +63,6 @@ $('#localmystart').click(function () {
 });
 
 
-
 $('#localmystop').click(function () {
     localremon.close();
 });
